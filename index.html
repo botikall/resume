@@ -53,11 +53,23 @@
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Project 1 -->
         <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 flex flex-col">
-          <div class="bg-gray-100 flex items-center justify-center h-64">
-            <img src="project1.png" 
-                 alt="Проєкт Django" 
-                 class="object-cover h-full w-full rounded-t-2xl">
+          <!-- Slider -->
+          <div class="relative overflow-hidden">
+            <div class="flex transition-transform duration-500 ease-in-out" id="slider1">
+              <img src="project1.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+              <img src="project1_2.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+              <img src="project1_3.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+              <img src="project1_4.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+            </div>
+            <!-- Buttons -->
+            <button onclick="prevSlide('slider1')" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 rounded-full p-2 hover:bg-white">
+              &#10094;
+            </button>
+            <button onclick="nextSlide('slider1')" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 rounded-full p-2 hover:bg-white">
+              &#10095;
+            </button>
           </div>
+    
           <div class="p-6 flex flex-col justify-between flex-grow">
             <div>
               <h3 class="text-lg font-bold text-sky-800 mb-2 leading-snug">
@@ -73,11 +85,23 @@
     
         <!-- Project 2 -->
         <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 flex flex-col">
-          <div class="bg-gray-100 flex items-center justify-center h-64">
-            <img src="project2.png" 
-                 alt="Проєкт JavaFX" 
-                 class="object-cover h-full w-full rounded-t-2xl">
+          <!-- Slider -->
+          <div class="relative overflow-hidden">
+            <div class="flex transition-transform duration-500 ease-in-out" id="slider2">
+              <img src="project2.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+              <img src="project2_2.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+              <img src="project2_3.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+              <img src="project2_4.png" class="w-full h-64 object-cover flex-shrink-0" alt="">
+            </div>
+            <!-- Buttons -->
+            <button onclick="prevSlide('slider2')" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/70 rounded-full p-2 hover:bg-white">
+              &#10094;
+            </button>
+            <button onclick="nextSlide('slider2')" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/70 rounded-full p-2 hover:bg-white">
+              &#10095;
+            </button>
           </div>
+    
           <div class="p-6 flex flex-col justify-between flex-grow">
             <div>
               <h3 class="text-lg font-bold text-sky-800 mb-2 leading-snug">
@@ -92,6 +116,27 @@
         </div>
       </div>
     </section>
+    
+    <!-- JS для слайдерів -->
+    <script>
+      const positions = {};
+    
+      function nextSlide(id) {
+        const slider = document.getElementById(id);
+        const slides = slider.children.length;
+        positions[id] = (positions[id] || 0) + 1;
+        if (positions[id] >= slides) positions[id] = 0;
+        slider.style.transform = `translateX(-${positions[id] * 100}%)`;
+      }
+    
+      function prevSlide(id) {
+        const slider = document.getElementById(id);
+        const slides = slider.children.length;
+        positions[id] = (positions[id] || 0) - 1;
+        if (positions[id] < 0) positions[id] = slides - 1;
+        slider.style.transform = `translateX(-${positions[id] * 100}%)`;
+      }
+    </script>
 
     <!-- Scholarships -->
     <section class="mb-10">
